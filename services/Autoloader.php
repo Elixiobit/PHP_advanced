@@ -1,19 +1,18 @@
 <?php
+
 class Autoloader
 {
-    public $paths = [
-        'models',
-        'services'
-    ];
 
     public function loadClass(string $classname)
     {
-        foreach ($this->paths as $dir) {
-            $filename = $_SERVER['DOCUMENT_ROOT'] . "/../{$dir}/{$classname}.php";
-            if(file_exists($filename)) {
-                require $filename;
-                return true;
-            }
+        $classname = explode('\\', $classname);
+        $classname = implode('/', $classname);
+//        var_dump($classname);
+//        $filename = realpath($_SERVER['DOCUMENT_ROOT'] . "/../{$classname}.php");
+        $filename = $_SERVER['DOCUMENT_ROOT'] . "/../{$classname}.php";
+        if (file_exists($filename)) {
+            require $filename;
+            return true;
         }
         return false;
     }

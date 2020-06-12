@@ -1,5 +1,5 @@
 <?php
-//namespace models;
+namespace models;
 
 
 class Product extends Model
@@ -9,6 +9,8 @@ class Product extends Model
     protected $description;
     protected $price;
     protected $category_id;
+
+
 
     public function getTableName(): string
     {
@@ -21,14 +23,17 @@ class Product extends Model
     public function getId()
     {
         return $this->id;
+
     }
 
     /**
      * @param mixed $id
+     * @return Product
      */
     public function setId($id)
     {
         $this->id = $id;
+        return $this;
     }
 
     /**
@@ -57,10 +62,12 @@ class Product extends Model
 
     /**
      * @param mixed $description
+     * @return Product
      */
     public function setDescription($description)
     {
         $this->description = $description;
+        return $this;
     }
 
     /**
@@ -73,10 +80,12 @@ class Product extends Model
 
     /**
      * @param mixed $price
+     * @return Product
      */
     public function setPrice($price)
     {
         $this->price = $price;
+        return $this;
     }
 
     /**
@@ -89,6 +98,7 @@ class Product extends Model
 
     /**
      * @param mixed $category_id
+     * @return Product
      */
     public function setCategoryId($category_id)
     {

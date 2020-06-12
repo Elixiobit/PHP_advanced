@@ -1,5 +1,7 @@
 <?php
-
+namespace models;
+use services\Db;
+use interfaces\ModelInterface;
 
 abstract class Model implements ModelInterface
 {

@@ -1,5 +1,5 @@
 <?php
-//namespace models;
+namespace models;
 class User extends Model
 {
     public $id;
