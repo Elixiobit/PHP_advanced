@@ -2,8 +2,11 @@
 
 namespace app\services;
 
+use app\traits\TSingleton;
+
 class Db //Работа с БД через \PDO
 {
+    use TSingleton;
 
     private $config = [
         'driver' => 'mysql',
@@ -20,21 +23,7 @@ class Db //Работа с БД через \PDO
 
     private $connection = null;
 
-    private static $instance = null;
 
-    private function __construct() {} // нельзя из вне создать элемент класса
-
-    public function __wakeup() {}
-
-    public function __clone() {}
-
-    public static function getInstance() //проверяем наличие созданного объекта Db, если отсутствует,то создаем.
-    {
-        if (is_null(static::$instance)) {
-            static::$instance = new static();
-        }
-        return static::$instance;
-    }
 
     public function getConnection()   // подключаемся к bd.
     {
@@ -75,6 +64,7 @@ class Db //Работа с БД через \PDO
         return $this->query($sql, $params)->fetchAll(/*\PDO::FETCH_ASSOC*/); // Для выведения только ассециативного
         // массива.
     }
+
 
     private function buildDshString()
     {

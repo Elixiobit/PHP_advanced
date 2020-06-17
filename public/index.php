@@ -13,14 +13,14 @@ spl_autoload_register([new Autoloader(), 'loadClass']);
 
 //$product = new Product();
 
-$user = new User();
+$user = new \app\models\Product();
+
 //var_dump($user);
 
-var_dump($user->getALl());
+var_dump($user->getById(1));
 
 
 
-//2) Сделать драйвер базы данных, используя паттерн Singleton(по аналогии с уроком)
 //3) Сделать базовую архитектуру базы данных для магазина - должны быть таблички, товар, категория, заказ,
 // позиции в закази и пользователи.(можно взять с прошлого проекта)
 //Сделать модели для этих сущностей
