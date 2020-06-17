@@ -1,6 +1,7 @@
 <?php
-namespace interfaces;
-interface ModelInterface
+namespace  app\interfaces;
+
+interface IModel
 {
     public function getById(int $id): array;
 
