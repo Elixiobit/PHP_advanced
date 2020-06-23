@@ -1,19 +1,17 @@
 <?php
-require $_SERVER['DOCUMENT_ROOT'] . "/../services/Autoloader.php";
+require $_SERVER['DOCUMENT_ROOT'] . "/../config/main.php";
+require ROOT_DIR . "services/Autoloader.php";
 
-use interfaces\ModelInterface;
-use models\Product;
-use models\User;
+spl_autoload_register([new app\services\Autoloader(), 'loadClass']);
 
-spl_autoload_register([new Autoloader(), 'loadClass']);
+//(new \app\services\Db())->getConnection(); //использовался для
 
-$product = new Product();
-var_dump($product);
-$user = new User();
-var_dump($user);
 
-//$product->setCategoryId()
-//    ->setDescription();
-//function foo(ModelInterface $object){
-//    var_dump($object->getById());
-//}
+$product = (new \app\models\Product())->getById(1);
+
+//var_dump($product);
+
+$product->name_product;
+$product->insertItem();
+
+
