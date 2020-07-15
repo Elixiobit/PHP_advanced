@@ -29,7 +29,7 @@ class Product extends Model
     }
 
 
-    public function getTableName(): string
+    public static function getTableName(): string
     {
         return "products";
     }

@@ -5,10 +5,19 @@ use app\models\Model;
 
 interface IModel
 {
-    public function getById(int $id): IModel;
+    public static function getById(int $id): Model;
 
-    public function getALl();
+    public static function getALl();
 
-    public function getTableName(): string;
+    public static function getTableName(): string;
+
+    public function deleteItem();
+
+    public function insertItem();
+
+    public function updateItem();
+
+//    public function saveItem();
+
 
 }

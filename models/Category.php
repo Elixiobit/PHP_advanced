@@ -7,7 +7,7 @@ class Category extends Model
     public $id;
     public $name_category;
 
-    public function getTableName(): string
+    public static function getTableName(): string
     {
         return "category";
     }

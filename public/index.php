@@ -7,11 +7,13 @@ spl_autoload_register([new app\services\Autoloader(), 'loadClass']);
 //(new \app\services\Db())->getConnection(); //использовался для
 
 
-$product = (new \app\models\Product())->getById(1);
-
-//var_dump($product);
-
-$product->name_product;
-$product->insertItem();
+$product = \app\models\Product::getById(1);
+//$product = new \app\models\Product();
 
 
+var_dump($product);
+//$product->name_product;
+//$product->insertItem();
+
+
+// ДЗ как избавиться от статики getById
