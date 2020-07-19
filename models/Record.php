@@ -2,10 +2,10 @@
 
 namespace app\models;
 use app\services\Db;
-use app\interfaces\IModel;
+use app\interfaces\IRecord;
 
 
-abstract class Model implements IModel
+abstract class Record implements IRecord
 {
     protected $id;
 //    protected static $tableName;
@@ -17,7 +17,7 @@ abstract class Model implements IModel
 //        $this->tableName = $this->getTableName();
     }
 
-    public static function getById(int $id): Model
+    public static function getById(int $id): Record
     {
         $tableName = static::getTableName();
         $sql = "SELECT * FROM {$tableName} WHERE id = :id";
@@ -43,12 +43,6 @@ abstract class Model implements IModel
         $sql = "SELECT * FROM {$this->tableName} WHERE id = :id";
         return $this->db->execute($sql, [':id' => $this->id]);
     }
-    public function updateItem()
-    {
-//todo UPDATE product SET name = :name
-
-    }
-
     public function insertItem()
     {
         $tableName = static::getTableName();
@@ -74,6 +68,17 @@ abstract class Model implements IModel
         $this->id = $this->db->getLastInsertId();
 
 
+    }
+
+    public function updateItem()
+    {
+//todo UPDATE product SET name = :name
+
+    }
+
+    public function saveItem()
+    {
+        
     }
 
 

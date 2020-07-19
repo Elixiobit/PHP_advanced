@@ -1,11 +1,11 @@
 <?php
 namespace  app\interfaces;
 
-use app\models\Model;
+use app\models\Record;
 
-interface IModel
+interface IRecord
 {
-    public static function getById(int $id): Model;
+    public static function getById(int $id): Record;
 
     public static function getALl();
 
@@ -17,7 +17,7 @@ interface IModel
 
     public function updateItem();
 
-//    public function saveItem();
+    public function saveItem();
 
 
 }
