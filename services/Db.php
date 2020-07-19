@@ -50,7 +50,7 @@ class Db //Работа с БД через \PDO
 
     public function getLastInsertId()
     {
-        $this->getConnection()->lastInsertId();
+        return $this->getConnection()->lastInsertId();
     }
 
      public function queryObject($className, string $sql, array $params = [])

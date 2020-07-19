@@ -2,12 +2,12 @@
 
 namespace app\models;
 
-class Category extends Model
+class Category extends Record
 {
     public $id;
     public $name_category;
 
-    public function getTableName(): string
+    public static function getTableName(): string
     {
         return "category";
     }

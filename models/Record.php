@@ -2,27 +2,27 @@
 
 namespace app\models;
 use app\services\Db;
-use app\interfaces\IModel;
+use app\interfaces\IRecord;
 
 
-abstract class Model implements IModel
+abstract class Record implements IRecord
 {
     protected $id;
-    protected $tableName;
+//    protected static $tableName;
     protected $db = null;
 
     public function __construct()
     {
         $this->db = Db::getInstance();
-        $this->tableName = $this->getTableName();
+//        $this->tableName = $this->getTableName();
     }
 
-    public function getById(int $id): IModel
+    public static function getById(int $id): Record
     {
-        $sql = "SELECT * FROM {$this->tableName} WHERE id = :id";
-        return $this->db->queryObject(get_called_class(), $sql, [':id' => $id])[0];
+        $tableName = static::getTableName();
+        $sql = "SELECT * FROM {$tableName} WHERE id = :id";
+        return Db::getInstance()->queryObject(get_called_class(), $sql, [':id' => $id])[0];
 //        var_dump($res); exit;
-
 //        return $this->db->queryOne($sql, [':id' => $id]);
 //        foreach ($res as $key => $val){
 //            $this->$key = $val;
@@ -30,10 +30,11 @@ abstract class Model implements IModel
 //        return $this;
     }
 
-    public function getALl()
+    public static function getALl()
     {
-        $sql = "SELECT * FROM {$this->tableName}";
-        return $this->db->queryAll($sql);
+        $tableName = static::getTableName();
+        $sql = "SELECT * FROM {$tableName}";
+        return Db::getInstance()->queryAll($sql);
     }
 
 
@@ -42,13 +43,12 @@ abstract class Model implements IModel
         $sql = "SELECT * FROM {$this->tableName} WHERE id = :id";
         return $this->db->execute($sql, [':id' => $this->id]);
     }
-    public function updateItem()
-    {
-
-    }
-
     public function insertItem()
     {
+        $tableName = static::getTableName();
+        $params = [];
+        $columns = [];
+
         // INSERT INTO  products (name,description) VALUES (:name, :description)
         foreach ($this as $key => $value) {
             if (in_array($key, ['db', 'tableName'])) {
@@ -62,13 +62,24 @@ abstract class Model implements IModel
         $columns = implode(", ", $columns);
         $placeholders = implode(", ", array_keys($params));
 
-        $sql = "INSERT INTO {$this->tableName} ({$columns}) VALUES ({$placeholders})";
-        var_dump($sql);
-//        $this->db->execute($sql, $params);
-//        $this->id =
+        $sql = "INSERT INTO {$tableName} ({$columns}) VALUES ({$placeholders})";
+
+        $this->db->execute($sql, $params);
+        $this->id = $this->db->getLastInsertId();
 
 
     }
 
+    public function updateItem()
+    {
+//todo UPDATE product SET name = :name
 
-}
+    }
+
+    public function saveItem()
+    {
+        
+    }
+
+
+}   //         сделать метод save для insertItem если новый и updateItem если уже существует

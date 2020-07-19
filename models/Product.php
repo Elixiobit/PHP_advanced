@@ -2,7 +2,7 @@
 namespace app\models;
 
 
-class Product extends Model
+class Product extends Record
 {
     public $id;
     public $name_product;
@@ -29,7 +29,7 @@ class Product extends Model
     }
 
 
-    public function getTableName(): string
+    public static function getTableName(): string
     {
         return "products";
     }
