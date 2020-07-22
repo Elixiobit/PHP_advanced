@@ -8,9 +8,9 @@ trait TSingleton
 
     private function __construct() {} // нельзя из вне создать элемент класса
 
-    public function __wakeup() {}
+    private function __wakeup() {}
 
-    public function __clone() {}
+    private function __clone() {}
 
 
     /**

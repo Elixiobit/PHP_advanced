@@ -7,8 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
-<h1>header</h1>
 <body>
+<p>header</p>
+<?php /** @var app\controllers\ProductController $content */ ?>
 <?=$content?>
 </body>
 </html>

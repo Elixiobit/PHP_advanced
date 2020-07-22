@@ -9,13 +9,11 @@ spl_autoload_register([new app\services\Autoloader(), 'loadClass']);
 //$product->name_product;
 //$product->insertItem();
 // ДЗ как избавиться от статики getById
-
+session_start();
 $controllerName = $_GET['c'] ?: 'product';
 $actionName = $_GET['a'];
 
 $controllerClass = "app\controllers\\" . ucfirst($controllerName) . "Controller";
-
-
 if(class_exists($controllerClass)) {
     /** @var app\controllers\ProductController $controller */
     $controller = new $controllerClass;

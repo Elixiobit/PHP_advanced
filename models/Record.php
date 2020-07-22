@@ -22,19 +22,13 @@ abstract class Record implements IRecord
         $tableName = static::getTableName();
         $sql = "SELECT * FROM {$tableName} WHERE id = :id";
         return Db::getInstance()->queryObject(get_called_class(), $sql, [':id' => $id])[0];
-//        var_dump($res); exit;
-//        return $this->db->queryOne($sql, [':id' => $id]);
-//        foreach ($res as $key => $val){
-//            $this->$key = $val;
-//        }
-//        return $this;
     }
 
     public static function getALl()
     {
         $tableName = static::getTableName();
         $sql = "SELECT * FROM {$tableName}";
-        return Db::getInstance()->queryAll($sql);
+        return Db::getInstance()->queryObject(get_called_class(), $sql);
     }
 
 
@@ -72,6 +66,8 @@ abstract class Record implements IRecord
 
     public function updateItem()
     {
+        $tableName = static::getTableName();
+
 //todo UPDATE product SET name = :name
 
     }
@@ -82,4 +78,4 @@ abstract class Record implements IRecord
     }
 
 
-}   //         сделать метод save для insertItem если новый и updateItem если уже существует
+}

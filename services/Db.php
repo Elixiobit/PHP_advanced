@@ -27,7 +27,7 @@ class Db //Работа с БД через \PDO
 
     public function getConnection()   // подключаемся к bd.
     {
-        if (is_null($this->connection)) {         // проаеряем на наличие уже существующего соединения.
+        if (is_null($this->connection)) {         // проверяем на наличие уже существующего соединения.
             $this->connection = new \PDO(
                 $this->buildDshString(),
                 $this->config['login'],
