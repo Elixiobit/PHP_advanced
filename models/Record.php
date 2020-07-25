@@ -17,6 +17,7 @@ abstract class Record implements IRecord
 //        $this->tableName = $this->getTableName();
     }
 
+
     public static function getById(int $id): Record
     {
         $tableName = static::getTableName();
@@ -32,7 +33,7 @@ abstract class Record implements IRecord
     }
 
 
-    public function deleteItem()
+    public function delete()
     {
         $sql = "SELECT * FROM {$this->tableName} WHERE id = :id";
         return $this->db->execute($sql, [':id' => $this->id]);
@@ -46,7 +47,8 @@ abstract class Record implements IRecord
         // INSERT INTO  products (name,description) VALUES (:name, :description)
         foreach ($this as $key => $value) {
             if (in_array($key, ['db', 'tableName'])) {
-                continue; //ДЗ придумать фильтр чтобы ненужные свойства не попадали в БД.
+                continue;
+                //TODO придумать фильтр чтобы ненужные свойства не попадали в БД.
             }
 
             $params[":{$key}"] = $value;
@@ -64,17 +66,17 @@ abstract class Record implements IRecord
 
     }
 
-    public function updateItem()
+    public function update()
     {
         $tableName = static::getTableName();
 
-//todo UPDATE product SET name = :name
+//todo UPDATE product SET name = :name При апдейте на изменение уходили только измененные поля.
 
     }
 
-    public function saveItem()
+    public function save()
     {
-        
+        //todo   Сохранять изменения черз метод save().
     }
 
 

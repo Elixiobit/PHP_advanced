@@ -12,11 +12,14 @@ spl_autoload_register([new app\services\Autoloader(), 'loadClass']);
 session_start();
 $controllerName = $_GET['c'] ?: 'product';
 $actionName = $_GET['a'];
+var_dump($_SESSION);
 
 $controllerClass = "app\controllers\\" . ucfirst($controllerName) . "Controller";
 if(class_exists($controllerClass)) {
     /** @var app\controllers\ProductController $controller */
-    $controller = new $controllerClass;
+    $controller = new $controllerClass(
+        new \app\services\renderers\TemplateRenderer()
+    );
     $controller->runAction($actionName);
 
 }

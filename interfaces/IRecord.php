@@ -11,13 +11,13 @@ interface IRecord
 
     public static function getTableName(): string;
 
-    public function deleteItem();
+    public function delete();
 
     public function insertItem();
 
-    public function updateItem();
+    public function update();
 
-    public function saveItem();
+    public function save();
 
 
 }
