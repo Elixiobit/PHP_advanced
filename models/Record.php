@@ -25,6 +25,18 @@ abstract class Record implements IRecord
         return Db::getInstance()->queryObject(get_called_class(), $sql, [':id' => $id])[0];
     }
 
+    public static function getProductByIds($ids)
+    {
+        $params = [];
+        $tableName = static::getTableName();
+        foreach ($ids as $key => $value) {
+            $params[":{$key}"] = $key;
+        }
+        $placeholders = implode(", ", array_keys($params));
+        $sql = "SELECT * FROM {$tableName} WHERE id IN ($placeholders)";
+        return Db::getInstance()->queryObject(get_called_class(), $sql, $params);
+    }
+
     public static function getALl()
     {
         $tableName = static::getTableName();

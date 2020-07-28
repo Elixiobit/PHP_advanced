@@ -17,7 +17,9 @@ abstract class Controller
 
     public function __construct(IRender $renderer)
     {
+//        session_start();
         $this->renderer = $renderer;
+
     }
 
 
@@ -25,6 +27,7 @@ abstract class Controller
     {
         $this->action = $action ?:$this->defaultAction;
         $method = "action" . ucfirst($action);
+
 
         if(method_exists($this, $method)) {
             $this->$method();
@@ -42,6 +45,11 @@ abstract class Controller
             );
         }
         return $content;
+    }
+
+    public function session()
+    {
+
     }
 
 

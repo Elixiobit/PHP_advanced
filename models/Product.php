@@ -1,6 +1,7 @@
 <?php
 namespace app\models;
 
+session_start();
 
 class Product extends Record
 {
@@ -9,6 +10,8 @@ class Product extends Record
     public $description;
     public $price;
     public $category_id;
+
+
 
     /**
      * Product constructor.
