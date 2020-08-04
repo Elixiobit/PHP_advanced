@@ -25,7 +25,7 @@ abstract class Record implements IRecord
         return Db::getInstance()->queryObject(get_called_class(), $sql, [':id' => $id])[0];
     }
 
-    public static function getProductByIds($ids)
+    public static function getByIds($ids)
     {
         $params = [];
         $tableName = static::getTableName();
@@ -77,7 +77,6 @@ abstract class Record implements IRecord
 
 
     }
-
     public function update()
     {
         $tableName = static::getTableName();
@@ -85,7 +84,6 @@ abstract class Record implements IRecord
 //todo UPDATE product SET name = :name При апдейте на изменение уходили только измененные поля.
 
     }
-
     public function save()
     {
         //todo   Сохранять изменения черз метод save().

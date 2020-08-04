@@ -1,4 +1,5 @@
 <?php
+// В данном проекте уже подключин композер
 namespace app\services;
 
 class Autoloader

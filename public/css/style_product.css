@@ -16,6 +16,11 @@ body {
     margin: 0 auto;
     /*min-height: 100%;*/
 }
+.product_cart{
+    display: flex;
+    align-items: center;
+    flex-flow: column;
+}
 
 .header li{
     list-style-type: none;

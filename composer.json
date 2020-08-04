@@ -1,0 +1,19 @@
+{
+    "name": "ilyas/php.extended.local",
+    "description": "php_extended",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Ilya Sushkov",
+            "email": "pyh3@yandex.ru"
+        }
+    ],
+    "require": {
+        "twig/twig": "^3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "app\\" : "./"
+        }
+    }
+}

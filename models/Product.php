@@ -1,7 +1,6 @@
 <?php
 namespace app\models;
 
-session_start();
 
 class Product extends Record
 {

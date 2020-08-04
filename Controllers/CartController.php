@@ -10,17 +10,25 @@ class CartController extends Controller
     //TODO реализовать по средствам кода с первого курса PHP
     public function actionCart()
     {
-//        session_start();
         $model = [];
         $cart = $_SESSION['cart'];
         if (!empty($cart)) {
-            $model = Product::getProductByIds($cart);
+            $model = Product::getByIds($cart);
         }
         echo $this->render('cart', ['model' => $model, 'cart' => $cart]);
 
-        var_dump($_POST);
     }
 
+    public function addCart()
+    {
+        $productId = (int)$_POST['product_id'];
+        $productQty = 1;
+        if (isset($_SESSION['cart'][$productId])) {
+            $_SESSION['cart'][$productId] += $productQty;
+        } else {
+            $_SESSION['cart'][$productId] = $productQty;
+        }
+    }
     public static function deleteItemCart($id)
     {
         $_SESSION['product_id'] = [];
